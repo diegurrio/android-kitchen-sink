@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android Kitchen Sink</string>
+    <string name="happy_birthday_label">Feliz Cumpleaños!</string>
+    <string name="signature_label">De parte de Diego.</string>
+</resources>

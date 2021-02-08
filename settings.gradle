@@ -1,0 +1,3 @@
+include ':diceroller'
+include ':basicViews'
+rootProject.name = "Android Kitchen Sink"
