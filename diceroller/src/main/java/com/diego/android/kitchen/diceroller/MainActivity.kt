@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             3 -> R.drawable.dice_3
             4 -> R.drawable.dice_4
             5 -> R.drawable.dice_5
-            else -> R.drawable.dice_6 // When expressions must be exhaustive, and handle all cases.
+            else -> R.drawable.dice_6 // *When* expressions must be exhaustive, and handle all cases.
         }
 
         // Update the ImageView with the correct drawable resource ID
@@ -55,9 +55,17 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+/**
+ * Simple dice class.
+ */
 class Dice(val numSides: Int) {
 
     fun roll(): Int {
+        /**
+         * Return a random number using IntRage.
+         * @see <a href="https://kotlinlang.org/docs/reference/ranges.html">Using ranges</a>
+         * @see <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-range/">IntRange</a>
+         */
         return (1..numSides).random()
     }
 }
