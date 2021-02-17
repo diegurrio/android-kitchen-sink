@@ -1,3 +1,4 @@
+include ':dessertclicker'
 include ':wordsapp'
 include ':affirmations'
 include ':tiptime'
