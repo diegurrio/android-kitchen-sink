@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/basicViews" />
             <option value="$PROJECT_DIR$/diceroller" />
             <option value="$PROJECT_DIR$/tiptime" />
+            <option value="$PROJECT_DIR$/wordsapp" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
