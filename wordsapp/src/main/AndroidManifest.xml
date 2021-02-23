@@ -24,9 +24,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Words">
-        <activity
-            android:name="com.diego.android.kitchen.wordsapp.DetailActivity"
-            android:parentActivityName="com.diego.android.kitchen.wordsapp.MainActivity" />
         <activity android:name="com.diego.android.kitchen.wordsapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
