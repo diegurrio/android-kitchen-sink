@@ -1,3 +1,4 @@
+include ':unscramble'
 include ':dessertclicker'
 include ':wordsapp'
 include ':affirmations'
