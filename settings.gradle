@@ -1,3 +1,4 @@
+include ':cupcake'
 include ':unscramble'
 include ':dessertclicker'
 include ':wordsapp'
