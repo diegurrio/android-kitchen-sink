@@ -15,9 +15,24 @@
  */
 package com.diego.android.kitchen.cupcake
 
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupActionBarWithNavController
 
 /**
  * Activity for cupcake order flow.
+ * Note: We do not use ActivityMainBinding to inflate the layout like we do in other
+ * modules. Instead we pass the layout to be inflated in the constructor of the activity.
  */
-class MainActivity : AppCompatActivity(R.layout.activity_main)
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        setupActionBarWithNavController(navController)
+    }
+}
