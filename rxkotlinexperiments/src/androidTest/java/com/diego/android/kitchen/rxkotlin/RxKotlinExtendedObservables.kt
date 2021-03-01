@@ -1,11 +1,10 @@
 package com.diego.android.kitchen.rxkotlin
 
 import android.app.Application
-import android.content.Context
-import androidx.test.InstrumentationRegistry.getTargetContext
+import android.content.res.Resources
+import androidx.annotation.RawRes
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import com.diego.android.kitchen.rxkotlin.helpers.FileReadError
 import exampleOf
 import io.reactivex.rxjava3.core.Single
@@ -13,8 +12,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.io.File
-import kotlin.text.Charsets.UTF_8
+import java.io.InputStream
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -38,7 +36,7 @@ class RxKotlinExtendedObservables {
         exampleOf("Example of using a Single Observable") {
             // Singles emit just one result.
             val subscription = CompositeDisposable()
-            val observer = loadText("a_new_hope.txt")
+            val observer = loadText(R.raw.a_new_hope)
                 .subscribe({ text ->
                     // On Success
                     println(text)
@@ -50,18 +48,22 @@ class RxKotlinExtendedObservables {
         }
     }
 
-    private fun loadText(fileName: String): Single<String> {
+    private fun loadText(@RawRes resId: Int): Single<String> {
         return Single.create create@{ emitter ->
+            // Check if the raw resource exists.
+            val inputStream: InputStream? = try {
+                app.applicationContext.resources.openRawResource(resId)
+            } catch (exception: Resources.NotFoundException) {
+                emitter.onError(FileReadError.FileNotFound())
+                null
+            }
 
-            val file =  app.applicationContext.fileList()
-            println("Aqui: $file")
-//            if (!file.exists()) {
-//                emitter.onError(FileReadError.FileNotFound())
-//                return@create
-//            }
-//
-//            val contents = file.readText(UTF_8)
-//            emitter.onSuccess(contents)
+            // Never null because we throw an exception before getting to this point.
+            val text = inputStream!!.reader().use {
+                it.readText()
+            }
+
+            emitter.onSuccess(text)
         }
     }
 }
