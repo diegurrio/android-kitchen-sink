@@ -7,8 +7,10 @@ import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.diego.android.kitchen.rxkotlin.helpers.FileReadError
 import exampleOf
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,14 +26,15 @@ class RxKotlinExtendedObservables {
 
     lateinit var app: Application
 
-    @Before fun setUp() {
+    @Before
+    fun setUp() {
         app = getApplicationContext<Application>()
     }
 
     @Test
-    /**
-     * See [RxKotlin Single](http://reactivex.io/documentation/single.html)
-     */
+            /**
+             * See [RxKotlin Single](http://reactivex.io/documentation/single.html)
+             */
     fun exampleOfSingle() {
         exampleOf("Example of using a Single Observable") {
             // Singles emit just one result.
@@ -45,6 +48,26 @@ class RxKotlinExtendedObservables {
                     println("Error: $error")
                 })
             subscription.add(observer)
+        }
+    }
+
+    @Test
+    fun exampleOfNeverWithSideEffects() {
+        exampleOf("Observer that never emits but has side effects callbacks") {
+            val subscriptions = CompositeDisposable()
+            val observable = Observable.never<Any>()
+            val subscription = observable.doOnSubscribe {
+                println("On Subscribe")
+            }.doOnDispose {
+                println("On Dispose")
+            }.subscribeBy(onNext = {
+                println("On Next")
+            }, onComplete = {
+                println("On Complete")
+            })
+
+            subscriptions.add(subscription)
+            subscriptions.clear()
         }
     }
 
