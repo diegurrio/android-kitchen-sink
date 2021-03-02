@@ -54,9 +54,9 @@ class RxKotlinExtendedObservables {
     @Test
     fun exampleOfNeverWithSideEffects() {
         exampleOf("Observer that never emits but has side effects callbacks") {
-            val subscriptions = CompositeDisposable()
+            val subscription = CompositeDisposable()
             val observable = Observable.never<Any>()
-            val subscription = observable.doOnSubscribe {
+            val observer = observable.doOnSubscribe {
                 println("On Subscribe")
             }.doOnDispose {
                 println("On Dispose")
@@ -66,8 +66,8 @@ class RxKotlinExtendedObservables {
                 println("On Complete")
             })
 
-            subscriptions.add(subscription)
-            subscriptions.clear()
+            subscription.add(observer)
+            subscription.clear()
         }
     }
 
