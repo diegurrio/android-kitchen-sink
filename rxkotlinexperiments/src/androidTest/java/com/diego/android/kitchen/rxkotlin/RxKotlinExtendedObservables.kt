@@ -31,10 +31,10 @@ class RxKotlinExtendedObservables {
         app = getApplicationContext<Application>()
     }
 
+    /**
+     * See [RxKotlin Single](http://reactivex.io/documentation/single.html)
+     */
     @Test
-            /**
-             * See [RxKotlin Single](http://reactivex.io/documentation/single.html)
-             */
     fun exampleOfSingle() {
         exampleOf("Example of using a Single Observable") {
             // Singles emit just one result.
