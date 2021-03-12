@@ -41,11 +41,25 @@ class MainActivity : AppCompatActivity() {
                         photos.map { BitmapFactory.decodeResource(resources, it.drawable) }
                     val newBitmap = combineImages(bitmaps)
                     collageImage.setImageDrawable(BitmapDrawable(resources, newBitmap))
+                    updateUI(photos)
                 } else {
                     actionClear()
                 }
             }
         })
+    }
+
+    private fun updateUI(photos: List<Photo>) {
+        // Update the state of the button and disable saving if there's no image to be saved and
+        // if there's an empty spot on the collage.
+        saveButton.isEnabled = photos.isNotEmpty() && (photos.size % 2 == 0)
+        clearButton.isEnabled = photos.isNotEmpty()
+        addButton.isEnabled = photos.size < 6
+        title = if (photos.isNotEmpty()){
+            resources.getQuantityString(R.plurals.photos_format, photos.size, photos.size)
+        } else{
+            getString(R.string.collage)
+        }
     }
 
     private fun actionAdd() {
