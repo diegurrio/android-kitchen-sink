@@ -63,12 +63,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun actionAdd() {
-        viewModel.addPhoto(PhotoStore.photos[0])
+        val addPhotosBottomDialogFragment = PhotosBottomDialogFragment.newInstance()
+        addPhotosBottomDialogFragment.show(supportFragmentManager, "PhotosBottomDialogFragment")
+        viewModel.subscribeSelectedPhotos(addPhotosBottomDialogFragment)
     }
 
     private fun actionClear() {
         viewModel.clearPhoto()
         collageImage.setImageResource(android.R.color.transparent)
+        updateUI(emptyList())
     }
 
     private fun actionSave() {

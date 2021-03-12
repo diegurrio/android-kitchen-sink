@@ -65,14 +65,15 @@ class SharedViewModel : ViewModel() {
         subscriptions.dispose()
     }
 
-    fun addPhoto(photo: Photo) {
-        // Add a new photo to the subject, which will emit a new list to all subscribers.
-        imagesSubject.value.add(photo)
-        imagesSubject.onNext(imagesSubject.value)
-    }
-
     fun clearPhoto() {
         imagesSubject.value.clear()
+    }
+
+    fun subscribeSelectedPhotos(fragment: PhotosBottomDialogFragment) {
+        subscriptions.add(fragment.selectedPhotos.subscribe {
+            imagesSubject.value.add(it)
+            imagesSubject.onNext(imagesSubject.value)
+        })
     }
 
     fun getSelectedPhotos(): LiveData<List<Photo>> = selectedPhotos
