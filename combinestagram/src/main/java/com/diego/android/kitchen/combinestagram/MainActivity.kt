@@ -7,7 +7,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -77,11 +79,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun actionSave() {
-       viewModel.saveBitmapFromImageView(collageImage, this).subscribeBy (
-           onSuccess = {
+       viewModel.saveBitmapFromImageView(collageImage, this)
+           .subscribeOn(Schedulers.io())
+           .observeOn(AndroidSchedulers.mainThread())
+           .subscribeBy (
+           onSuccess = { it ->
                Toast.makeText(this, "$it saved", Toast.LENGTH_SHORT).show()
            },
-           onError = {
+           onError = { it ->
                Toast.makeText(this, "Error saving file: ${it.localizedMessage}",Toast.LENGTH_SHORT).show()
            }
        )

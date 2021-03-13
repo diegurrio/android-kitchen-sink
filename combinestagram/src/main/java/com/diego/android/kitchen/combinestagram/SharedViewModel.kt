@@ -38,10 +38,9 @@ import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.subjects.BehaviorSubject
+import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.BehaviorSubject
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException

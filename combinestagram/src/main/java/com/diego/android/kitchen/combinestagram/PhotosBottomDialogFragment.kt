@@ -7,8 +7,8 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.subjects.PublishSubject
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.layout_photo_bottom_sheet.*
 
 
