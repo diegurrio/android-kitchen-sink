@@ -3,9 +3,11 @@ package com.diego.android.kitchen.combinestagram
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -75,6 +77,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun actionSave() {
-        println("actionSave")
+       viewModel.saveBitmapFromImageView(collageImage, this).subscribeBy (
+           onSuccess = {
+               Toast.makeText(this, "$it saved", Toast.LENGTH_SHORT).show()
+           },
+           onError = {
+               Toast.makeText(this, "Error saving file: ${it.localizedMessage}",Toast.LENGTH_SHORT).show()
+           }
+       )
     }
 }
