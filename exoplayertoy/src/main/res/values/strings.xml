@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ExoPlayer Toy</string>
+    <string name="media_url_mp3">https://storage.googleapis.com/exoplayer-test-media-0/play.mp3</string>
+</resources>
