@@ -104,6 +104,30 @@ class RxKotlinBasicExamples {
     }
 
     @Test
+    fun exampleOfNeverWithSideEffects() {
+        exampleOf("Observer that never emits a result with consequences this time") {
+            val observable = Observable.never<Any>()
+            val subscriptions = CompositeDisposable()
+            val subscription = observable.doOnSubscribe {
+                println("On subscribe")
+                println(it.isDisposed)
+            }.doOnDispose {
+                println("Disposed")
+            }.subscribeBy(
+                onNext = {
+                    println("On next: ${it}")
+                },
+                onComplete = {
+                    println("Completed")
+                }
+            )
+
+            subscriptions.add(subscription)
+            subscriptions.clear()
+        }
+    }
+
+    @Test
     fun exampleOfDispose() {
         exampleOf("Example of disposing") {
             // Note: Any is the root of all kotlin classes. Similar to java Object class
