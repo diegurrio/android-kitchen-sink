@@ -139,6 +139,9 @@ class RxKotlinFilteringObservables {
         }
     }
 
+    /**
+     * Example of how to use take while and take until operators
+     */
     @Test
     fun exampleOfTakeWhileAndTakeUntil() {
         exampleOf("Example of take while") {
@@ -184,6 +187,9 @@ class RxKotlinFilteringObservables {
         }
     }
 
+    /**
+     * Example of using distinct Until changed.
+     */
     @Test
     fun exampleOfDistinctUntilChanged(){
         exampleOf("Example of distinct until changed") {
