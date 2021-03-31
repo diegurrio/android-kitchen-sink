@@ -39,7 +39,7 @@ val episodeVMovie = Movie("The Empire Strikes Back", 94)
 val episodeVIMovie = Movie("Return Of The Jedi", 80)
 val episodeVIIMovie = Movie("The Force Awakens", 93)
 val episodeVIIIMovie = Movie("The Last Jedi", 91)
-val tomatometerRatingsMovie = listOf(
+val tomatometerRatings = listOf(
     episodeI, episodeII, episodeIII, rogueOne, episodeIV, episodeV, episodeVI, episodeVII, episodeVIII)
 
 const val itsNotMyFault = "It’s not my fault."
@@ -55,5 +55,5 @@ const val mayThe4thBeWithYou = "May the 4th be with you."
 const val mayTheOdds = "And may the odds be ever in your favor"
 const val liveLongAndProsper = "Live long and prosper"
 
-val tomatometerRatings = listOf(
+val tomatometerRatingsMovies = listOf(
     episodeIMovie, episodeIIMovie, episodeIIIMovie, rogueOneMovie, episodeIVMovie, episodeVMovie, episodeVIMovie, episodeVIIMovie, episodeVIIIMovie)

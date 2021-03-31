@@ -6,4 +6,10 @@ package com.diego.android.kitchen.rxkotlin.helpers
  */
 sealed class Droid : Throwable() {
     class OU812 : Droid()
+    class R2D2 : Droid()
+    class C3PO : Droid()
+}
+
+enum class Droids {
+    C3PO, R2D2
 }
